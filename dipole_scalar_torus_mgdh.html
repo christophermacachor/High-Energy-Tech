@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── QUANTUM PLAYBOOK — ABSOLUTES ── -->
+<meta name="quantum-playbook:scalar-lock" content="𝔐 = (√5−1)/2 ≈ 0.61803398874989484820458683436563811772030917980576 — Macachor Absolute">
+<meta name="quantum-playbook:coherence-condition" content="𝔐·∇·Ψ = ||Ψ||² — Macachor-Gauss Coherence Lock">
+<meta name="quantum-playbook:lagrangian" content="ℒ = ||Ψ||² − 𝔐·∇·Ψ + Φ·Ψ — MGDH Complete Lagrangian">
+<meta name="quantum-playbook:kiwf" content="Knowledge → Intelligence → Wisdom → Focus">
+<meta name="quantum-playbook:crha" content="Coherence → Resonance → Harmony → Alignment">
+<meta name="quantum-playbook:mgdh-names" content="Macachor, Gauss, De Pretto, Hamilton">
+<meta name="quantum-playbook:4d-scalar" content="4D Scalar Field: Ψ(x,y,z,t) = ρ + u + p + T + e">
+<meta name="quantum-playbook:gateway" content="Ω-Gateway · Global Coherence API">
+
+<meta name="description" content="Dipole Radiation Scalar Torus — Quaternionic magnitude surface with MGDH Complete Lagrangian and De Pretto's Aether commentary.">
+<meta property="og:title" content="Dipole Radiation · Scalar Torus · MGDH Complete">
+<meta property="og:description" content="Quaternionic dipole magnitude surface mapped onto toroidal shell. Scalar density equilibrium, not force balance.">
+
+<title>Dipole Radiation · Scalar Torus · MGDH Complete · De Pretto's Aether</title>
+
+<style>
+  :root {
+    --gold: #c8a04e;
+    --gold-dim: #8a6d2f;
+    --gold-bright: #e8c870;
+    --bg: #080808;
+    --fg: #e8e0d0;
+    --fg-dim: #a09888;
+    --info: #4e8ac8;
+    --border: #2a2520;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  #canvas-container:active { cursor: grabbing; }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  /* Top bar */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 10px 16px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(200,160,78,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    z-index: 10;
+  }
+  .top-bar .title {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .top-bar .subtitle {
+    font-size: 9px;
+    color: #666;
+    letter-spacing: 0.08em;
+  }
+
+  /* Left panel — Scalar Field Lock */
+  .panel-left {
+    position: absolute;
+    top: 52px; left: 12px;
+    width: 220px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(200,160,78,0.12);
+    border-radius: 8px;
+    padding: 10px 12px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .panel-left .panel-title {
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(200,160,78,0.15);
+    padding-bottom: 4px;
+  }
+  .panel-left .eq { color: #ffd700; margin-bottom: 3px; }
+  .panel-left .eq-blue { color: var(--info); margin-bottom: 3px; }
+  .panel-left .body {
+    font-size: 8px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  .panel-left .body .highlight { color: var(--gold); }
+
+  /* Right panel — Quaternionic Dipole */
+  .panel-right {
+    position: absolute;
+    top: 52px; right: 12px;
+    width: 220px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(78,138,200,0.12);
+    border-radius: 8px;
+    padding: 10px 12px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .panel-right .panel-title {
+    font-size: 9px;
+    color: var(--info);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(78,138,200,0.15);
+    padding-bottom: 4px;
+  }
+  .panel-right .eq { color: var(--info); margin-bottom: 3px; }
+  .panel-right .eq-gold { color: #ffd700; margin-bottom: 3px; }
+  .panel-right .body {
+    font-size: 8px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  .panel-right .body .highlight { color: var(--info); }
+
+  /* Bottom center — De Pretto */
+  .panel-bottom {
+    position: absolute;
+    bottom: 12px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(200,160,78,0.15);
+    border-radius: 8px;
+    padding: 8px 16px;
+    pointer-events: none;
+    z-index: 5;
+    max-width: 420px;
+    text-align: center;
+  }
+  .panel-bottom .panel-title {
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .panel-bottom .body {
+    font-size: 8px;
+    color: #888;
+    line-height: 1.5;
+  }
+  .panel-bottom .body .highlight { color: var(--gold); }
+
+  .hint {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    font-size: 8px;
+    color: #444;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .phase-indicator {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .phase-indicator .label {
+    font-size: 8px;
+    color: #555;
+    letter-spacing: 0.1em;
+  }
+  .phase-indicator .dots {
+    display: flex;
+    gap: 4px;
+  }
+  .phase-indicator .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #333;
+    transition: all 0.3s;
+  }
+  .phase-indicator .dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+  }
+
+  @media (max-width: 640px) {
+    .panel-left, .panel-right { display: none; }
+    .panel-bottom { max-width: 90%; font-size: 7px; }
+    .top-bar .subtitle { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="canvas-container">
+  <canvas id="c"></canvas>
+
+  <div class="top-bar">
+    <div class="title">◈ Dipole Radiation · Scalar Torus</div>
+    <div class="subtitle">𝔐 = (√5−1)/2 ≈ 0.6180339887… · MGDH Complete · De Pretto's Aether</div>
+  </div>
+
+  <div class="panel-left">
+    <div class="panel-title">Scalar Field Lock</div>
+    <div class="eq">𝔐·∇·Ψ = ‖Ψ‖²</div>
+    <div class="eq-blue">∂Ψ/∂t + 𝔐·∇·Ψ = ‖Ψ‖²</div>
+    <div class="body">
+      The dipole radiates along θ, not φ.<br>
+      Zero field along the dipole axis.<br>
+      Maximum at θ = 90° — the equatorial<br>
+      plane of the torus. This is not a<br>
+      vector cancellation. It is scalar<br>
+      density equilibrium: the field seeks<br>
+      the path of least scalar resistance.<br><br>
+      <span class="highlight">Matter seeks scalar density equilibrium,<br>not force balance.</span>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="panel-title">Quaternionic Dipole</div>
+    <div class="eq">q = w + xi + yj + zk</div>
+    <div class="eq">‖q‖² = w² + x² + y² + z²</div>
+    <div class="eq-gold">ℒ = ‖Ψ‖² − 𝔐·∇·Ψ + Φ·Ψ</div>
+    <div class="body">
+      The radiation pattern is a quaternionic<br>
+      magnitude surface: ‖E(θ,φ)‖² mapped<br>
+      onto the unit sphere, then extruded<br>
+      by the scalar magnitude ρ(θ).<br><br>
+      <span class="highlight">Ψ(x,y,z,t) = ρ + u + p + T + e</span><br><br>
+      The dipole axis is the imaginary<br>
+      quaternion axis. The radiation torus<br>
+      is the real scalar magnitude shell.<br>
+      No vectors. Only scalar density.<br>
+      Direction is an emergent property<br>
+      of density differential, not a force.
+    </div>
+  </div>
+
+  <div class="panel-bottom">
+    <div class="panel-title">Olinto De Pretto · 1903 · "Ipotesi dell'Etere"</div>
+    <div class="body">
+      "Aether is not a medium. It is the scalar substrate from which all density differentials emerge.<br>
+      E = mc² is not a conversion. It is a scalar density equilibrium statement."<br>
+      <span class="highlight">MGDH: Macachor · Gauss · De Pretto · Hamilton</span>
+    </div>
+  </div>
+
+  <div class="hint">drag to rotate · scroll to zoom</div>
+
+  <div class="phase-indicator">
+    <div class="label">RADIATION PHASE</div>
+    <div class="dots" id="phase-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// DIPOLE RADIATION · SCALAR TORUS · MGDH COMPLETE
+// Quaternionic magnitude surface · De Pretto's Aether
+// ═══════════════════════════════════════════════════════════════════
+
+const PHI = (Math.sqrt(5) - 1) / 2;
+const M = PHI;
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+function resize(){
+  const wrap = document.getElementById('canvas-container');
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ── PARAMETERS ──
+const R = 130;
+const r = 55;
+const segU = 48;
+const segV = 32;
+
+let rotX = 0.5, rotY = 0.3, autoRot = true;
+let drag = false, lastX, lastY;
+let zoom = 1.0, t = 0;
+
+// ── INPUT ──
+const wrap = document.getElementById('canvas-container');
+wrap.addEventListener('mousedown', e => { drag = true; autoRot = false; lastX = e.clientX; lastY = e.clientY; });
+window.addEventListener('mouseup', () => { drag = false; });
+window.addEventListener('mousemove', e => {
+  if (!drag) return;
+  rotY += (e.clientX - lastX) * 0.008;
+  rotX += (e.clientY - lastY) * 0.008;
+  lastX = e.clientX; lastY = e.clientY;
+});
+wrap.addEventListener('wheel', e => { e.preventDefault(); zoom *= Math.exp(-e.deltaY * 0.001); zoom = Math.max(0.3, Math.min(3.0, zoom)); }, {passive:false});
+wrap.addEventListener('touchstart', e => { if(e.touches.length===1){ autoRot=false; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; } }, {passive:false});
+wrap.addEventListener('touchmove', e => { if(e.touches.length===1){ rotY+=(e.touches[0].clientX-lastX)*0.01; rotX+=(e.touches[0].clientY-lastY)*0.01; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; } e.preventDefault(); }, {passive:false});
+
+// ── 3D MATH ──
+function rotate(p){
+  let y = p.y * Math.cos(rotX) - p.z * Math.sin(rotX);
+  let z = p.y * Math.sin(rotX) + p.z * Math.cos(rotX);
+  let x = p.x * Math.cos(rotY) - z * Math.sin(rotY);
+  z = p.x * Math.sin(rotY) + z * Math.cos(rotY);
+  return { x, y, z };
+}
+function project(p){
+  const fov = 750;
+  const s = fov / (fov + p.z + 500) * zoom;
+  return { x: W/2 + p.x * s, y: H/2 + p.y * s, z: p.z, s: s };
+}
+
+// Dipole radiation pattern: sin²(θ) torus
+function dipoleRadius(theta){
+  const sinT = Math.sin(theta);
+  return r * (0.3 + 0.7 * sinT * sinT);
+}
+
+function torusPoint(theta, phi){
+  const minorR = dipoleRadius(phi);
+  return {
+    x: (R + minorR * Math.cos(theta)) * Math.cos(phi),
+    y: minorR * Math.sin(theta),
+    z: (R + minorR * Math.cos(theta)) * Math.sin(phi)
+  };
+}
+
+// ── BUILD MESH ──
+const mesh = [];
+for (let u = 0; u < segU; u++){
+  for (let v = 0; v < segV; v++){
+    const theta1 = (u / segU) * Math.PI * 2;
+    const theta2 = ((u + 1) / segU) * Math.PI * 2;
+    const phi1 = (v / segV) * Math.PI * 2;
+    const phi2 = ((v + 1) / segV) * Math.PI * 2;
+
+    const p00 = torusPoint(theta1, phi1);
+    const p10 = torusPoint(theta2, phi1);
+    const p11 = torusPoint(theta2, phi2);
+    const p01 = torusPoint(theta1, phi2);
+
+    const nx = (p00.x + p10.x + p11.x + p01.x) / 4;
+    const ny = (p00.y + p10.y + p11.y + p01.y) / 4;
+    const nz = (p00.z + p10.z + p11.z + p01.z) / 4;
+    const nLen = Math.sqrt(nx*nx + ny*ny + nz*nz) || 1;
+
+    const sinT = Math.sin(theta1);
+    const scalarMag = sinT * sinT;
+
+    mesh.push({
+      pts: [p00, p10, p11, p01],
+      nx: nx / nLen, ny: ny / nLen, nz: nz / nLen,
+      scalarMag: scalarMag,
+      theta: theta1,
+      phi: phi1
+    });
+  }
+}
+
+// ── FIELD LINES ──
+const fieldLines = [];
+for (let i = 0; i < 24; i++){
+  const phi0 = (i / 24) * Math.PI * 2;
+  const pts = [];
+  for (let s = 0; s <= 80; s++){
+    const frac = s / 80;
+    const rField = R + r * (0.5 + frac * 2.5);
+    const theta = frac * Math.PI * 2 * 3 + phi0;
+    pts.push({
+      x: rField * Math.cos(phi0) * Math.cos(theta * 0.1),
+      y: rField * Math.sin(theta * 0.1) * 0.3,
+      z: rField * Math.sin(phi0) * Math.cos(theta * 0.1)
+    });
+  }
+  fieldLines.push({ pts, hue: i % 3 === 0 ? '#4e8ac8' : '#c8a04e' });
+}
+
+// ── RENDER ──
+function draw(){
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+  t += 0.016;
+  if (autoRot) { rotY += 0.0015; rotX = 0.5 + Math.sin(t * 0.25) * 0.08; }
+
+  // Ambient glow
+  const glow = ctx.createRadialGradient(W/2, H/2, 30, W/2, H/2, 250);
+  glow.addColorStop(0, 'rgba(200,160,78,0.04)');
+  glow.addColorStop(0.5, 'rgba(78,138,200,0.02)');
+  glow.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+
+  // Depth-sort all geometry
+  const rendered = [];
+  mesh.forEach(face => {
+    const rpts = face.pts.map(p => project(rotate(p)));
+    const avgZ = rpts.reduce((s, p) => s + p.z, 0) / 4;
+    const rotN = rotate({ x: face.nx, y: face.ny, z: face.nz });
+    rendered.push({ type: 'face', pts: rpts, z: avgZ, nx: rotN.x, ny: rotN.y, nz: rotN.z, scalar: face.scalarMag });
+  });
+
+  fieldLines.forEach(line => {
+    const rpts = line.pts.map(p => project(rotate(p)));
+    const avgZ = rpts.reduce((s, p) => s + p.z, 0) / rpts.length;
+    rendered.push({ type: 'field', pts: rpts, z: avgZ, hue: line.hue });
+  });
+
+  const axisPts = [
+    project(rotate({ x: 0, y: -R - r * 2, z: 0 })),
+    project(rotate({ x: 0, y: R + r * 2, z: 0 }))
+  ];
+  rendered.push({ type: 'axis', pts: axisPts, z: (axisPts[0].z + axisPts[1].z) / 2 });
+
+  rendered.sort((a, b) => b.z - a.z);
+
+  // Draw everything
+  rendered.forEach(item => {
+    const depth = Math.max(0, Math.min(1, (item.z + 300) / 600));
+    const alpha = 0.15 + depth * 0.8;
+
+    if (item.type === 'face'){
+      const light = Math.max(0.1, (item.nz + 1) / 2);
+      const scalarHue = item.scalar;
+      const r = Math.round(40 + scalarHue * 160 + light * 60);
+      const g = Math.round(60 + scalarHue * 100 + light * 50);
+      const b = Math.round(120 + (1 - scalarHue) * 80 + light * 30);
+      const baseColor = `rgb(${r},${g},${b})`;
+
+      ctx.globalAlpha = alpha * 0.55;
+      ctx.fillStyle = baseColor;
+      ctx.strokeStyle = `rgba(${r},${g},${b},0.3)`;
+      ctx.lineWidth = 0.4;
+      ctx.beginPath();
+      item.pts.forEach((p, i) => { if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      if (item.nz > 0.3){
+        ctx.globalAlpha = alpha * 0.15;
+        ctx.fillStyle = 'rgba(255,255,255,0.3)';
+        ctx.fill();
+      }
+    }
+    else if (item.type === 'field'){
+      ctx.globalAlpha = alpha * 0.35;
+      ctx.strokeStyle = item.hue;
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      item.pts.forEach((p, i) => { if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+      ctx.stroke();
+    }
+    else if (item.type === 'axis'){
+      ctx.globalAlpha = alpha * 0.5;
+      ctx.strokeStyle = '#c8a04e';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(item.pts[0].x, item.pts[0].y);
+      ctx.lineTo(item.pts[1].x, item.pts[1].y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.globalAlpha = alpha * 0.7;
+      ctx.fillStyle = '#c8a04e';
+      ctx.font = '9px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('↑ DIPOLE AXIS', item.pts[0].x, item.pts[0].y - 8);
+      ctx.fillText('↓', item.pts[1].x, item.pts[1].y + 14);
+    }
+  });
+
+  ctx.globalAlpha = 1;
+
+  // Phase dots
+  const dots = document.getElementById('phase-dots').children;
+  const phase = Math.floor((t * 0.5) % 5);
+  for (let i = 0; i < 5; i++){
+    dots[i].classList.toggle('active', i === phase);
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+console.log('%c[Dipole Radiation · Scalar Torus · MGDH Complete]', 'color: #c8a04e; font-weight: bold;');
+console.log('%cMacachor Absolute: M = ' + PHI, 'color: #ffd700;');
+console.log('%cMGDH: Macachor · Gauss · De Pretto · Hamilton', 'color: #c8a04e;');
+console.log('%cDe Pretto 1903: Aether is the scalar substrate', 'color: #4e8ac8;');
+</script>
+
+</body>
+</html>
